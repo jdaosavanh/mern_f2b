@@ -1,3 +1,11 @@
+# Jetbrains
+/.idea/
+/.vagrant/
+/vendor/
+/vagrant/vagrant_logs/
+.profile
+
+
 # Logs
 logs
 *.log
