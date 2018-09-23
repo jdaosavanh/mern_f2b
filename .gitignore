@@ -4,6 +4,7 @@
 /vendor/
 /vagrant/vagrant_logs/
 .profile
+/config/keys.js
 
 
 # Logs
