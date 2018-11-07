@@ -15,12 +15,6 @@ const validateLoginInput = require('../../validation/login');
 const User = require('../../models/User');
 
 
-router.get('/', (req,res) =>{
-
-    res.json({sup:"hello"});
-    } );
-
-
 // @route GET api/users/test
 // @desc Test post route
 // @access Public
