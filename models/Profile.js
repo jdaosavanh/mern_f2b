@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const ProfileSchema = new Schema({
-    user: {
+     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
     },

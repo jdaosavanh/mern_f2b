@@ -13,12 +13,7 @@ const validateLoginInput = require('../../validation/login');
 
 //Load User model
 const User = require('../../models/User');
-
-
-// @route GET api/users/test
-// @desc Test post route
-// @access Public
-router.get('/test', (req,res) => res.json({ msg :'test test test'}));
+const Profile = require('../../models/Profile');
 
 
 // @route POST api/users/register
@@ -132,5 +127,29 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req,res)
         id: req.user.id
     });
 });
+
+// @route   DELETE api/profile
+// @desc    Delete user and profile
+// @access  Private
+router.delete(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+
+        const response = {};
+        User.findOneAndRemove({ _id: req.user.id }).then(() => {
+            response.success = true;
+            //If user is deleted remove profile too
+            Profile.findOneAndRemove({ user: req.user.id }).then((profile) => {
+                if(profile){
+                    response.profile = true;
+                }
+                res.json(response);
+            });
+
+        });
+    }
+);
+
 
 module.exports = router;
